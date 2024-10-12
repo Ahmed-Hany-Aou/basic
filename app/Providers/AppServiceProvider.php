@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Providers;
-
 use Illuminate\Support\ServiceProvider;
+use Intervention\Image\ImageManager;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +14,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton('ImageManager', function () {
+            return new ImageManager(array('driver' => 'gd')); // or 'imagick'
+        });
     }
 
     /**
