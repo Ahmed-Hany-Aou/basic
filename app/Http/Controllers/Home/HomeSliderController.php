@@ -17,44 +17,47 @@ class HomeSliderController extends Controller
     } // End Method 
 
     public function UpdateSlider(Request $request)
-    {
-        $slide_id = $request->id;
-        if ($request->file('home_slide')) {
-            $image = $request->file('home_slide');
+{
+    $slide_id = $request->id;
+    $slide = HomeSlide::findOrFail($slide_id);
 
-            // Generate a unique file name
-            $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+    if ($request->file('home_slide')) {
+        $file = $request->file('home_slide');
 
-            // Resize and save the image using the Intervention Image package
-            $resizedImage = Image::make($image->getRealPath())->resize(636, 852);
-            $resizedImage->save('upload/home_slide/' . $name_gen);
+        // Generate a filename based on the current date and time
+        $filename = date('YmdHi') . $file->getClientOriginalName();
 
-            $save_url = 'upload/home_slide/' . $name_gen;
+        // Move the file to the public directory
+        $file->move(public_path('upload/home_slide'), $filename);
 
-            HomeSlide::findOrFail($slide_id)->update([
-                'title' => $request->title,
-                'short_title' => $request->short_title,
-                'video_url' => $request->video_url,
-                'home_slide' => $save_url,
-            ]);
+        $save_url = 'upload/home_slide/' . $filename;
 
-            $notification = [
-                'message' => 'Home Slide Updated with Image Successfully',
-                'alert-type' => 'success'
-            ];
-            return redirect()->back()->with($notification);
-        } else {
-            HomeSlide::findOrFail($slide_id)->update([
-                'title' => $request->title,
-                'short_title' => $request->short_title,
-                'video_url' => $request->video_url,
-            ]);
+        // Update the record with the new image path
+        $slide->update([
+            'title' => $request->title,
+            'short_title' => $request->short_title,
+            'video_url' => $request->video_url,
+            'home_slide' => $save_url,
+        ]);
 
-            $notification = [
-                'message' => 'Home Slide Updated without Image Successfully',
-                'alert-type' => 'success'
-            ];
-            return redirect()->back()->with($notification);
-        } // end Else
-    } // End Method 
+        $notification = [
+            'message' => 'Home Slide Updated with Image Successfully',
+            'alert-type' => 'success'
+        ];
+        return redirect()->back()->with($notification);
+    } else {
+        $slide->update([
+            'title' => $request->title,
+            'short_title' => $request->short_title,
+            'video_url' => $request->video_url,
+        ]);
+
+        $notification = [
+            'message' => 'Home Slide Updated without Image Successfully',
+            'alert-type' => 'success'
+        ];
+        return redirect()->back()->with($notification);
+    }
+}
+
 }

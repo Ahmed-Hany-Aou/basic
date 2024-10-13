@@ -9,7 +9,7 @@
         <div class="card-body">
             <h4 class="card-title">Add Multi Image</h4> <br><br>
             
-            <form method="post" action="#" enctype="multipart/form-data">
+            <form method="post" action="{{ route('store.multi.image') }}" enctype="multipart/form-data">
                 @csrf
   
           
