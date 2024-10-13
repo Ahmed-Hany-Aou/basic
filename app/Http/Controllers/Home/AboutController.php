@@ -84,24 +84,38 @@ class AboutController extends Controller
     } // End Method
 
     public function StoreMultiImage(Request $request)
-    {
-        $image = $request->file('multi_image');
-        foreach ($image as $multi_image) {
-            $name_gen = hexdec(uniqid()) . '.' . $multi_image->getClientOriginalExtension();
-           // Image::make($multi_image)->resize(220, 220)->save(public_path('upload/multi/' . $name_gen));
+{
+    $images = $request->file('multi_image');
+    foreach ($images as $image) {
+        $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
 
-            $save_url = 'upload/multi/' . $name_gen;
-            MultiImage::insert([
-                'multi_image' => $save_url,
-                'created_at' => Carbon::now(),
-            ]);
-        }
+        // Save the image using Intervention Image or directly move it
+      //  Image::make($image)->resize(220, 220)->save(public_path('upload/multi/' . $name_gen));
 
-        $notification = [
-            'message' => 'Multi Image Inserted Successfully',
-            'alert-type' => 'success',
-        ];
+        // Store the relative URL in the database, not the full path
 
-        return redirect()->back()->with($notification);
+         // Save the file to the public directory without resizing
+         $image->move(public_path('upload/multi'), $name_gen);
+
+        $save_url = 'upload/multi/' . $name_gen;
+        MultiImage::create([
+            'multi_image' => $save_url,
+            'created_at' => now(),
+        ]);
+    }
+
+    $notification = [
+        'message' => 'Multi Image Inserted Successfully',
+        'alert-type' => 'success',
+    ];
+
+    return redirect()->back()->with($notification);
+
     } // End Method
+    public function AllMultiImage(){
+        $allMultiImage = MultiImage::all();
+        return view('admin.about_page.all_multiimage',compact('allMultiImage'));
+     }// End Method 
+
+
 }
