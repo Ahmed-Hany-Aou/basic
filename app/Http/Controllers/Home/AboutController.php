@@ -5,75 +5,103 @@ namespace App\Http\Controllers\Home;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\About;
-use Image;
+use App\Models\MultiImage;
+use Illuminate\Support\Carbon;
+use Intervention\Image\Facades\Image;
 
 class AboutController extends Controller
 {
-    public function AboutPage(){
-
+    public function AboutPage()
+    {
         $aboutpage = About::find(1);
-        return view('admin.about_page.about_page_all',compact('aboutpage'));
+        return view('admin.about_page.about_page_all', compact('aboutpage'));
+    } // End Method
 
-     } // End Method 
-
-
-
- public function UpdateAbout(Request $request){
-
+    public function UpdateAbout(Request $request)
+    {
         $about_id = $request->id;
+        $about = About::findOrFail($about_id);
+
+        // Validate the request
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'short_title' => 'required|string|max:255',
+            'short_description' => 'required|string',
+            'long_description' => 'required|string',
+            'about_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
 
         if ($request->file('about_image')) {
-            $image = $request->file('about_image');
-            $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();  // 3434343443.jpg
+            $file = $request->file('about_image');
 
-           // Image::make($image)->resize(523,605)->save('upload/home_about/'.$name_gen);
-            $save_url = 'upload/home_about/'.$name_gen;
+            // Generate a filename based on the current date and time
+            $filename = date('YmdHi') . $file->getClientOriginalName();
 
-            About::findOrFail($about_id)->update([
+            // Move the file to the public directory
+            $file->move(public_path('upload/home_about'), $filename);
+
+            $save_url = 'upload/home_about/' . $filename;
+
+            // Update the record with the new image path
+            $about->update([
                 'title' => $request->title,
                 'short_title' => $request->short_title,
                 'short_description' => $request->short_description,
                 'long_description' => $request->long_description,
                 'about_image' => $save_url,
+            ]);
 
-            ]); 
-            $notification = array(
-            'message' => 'About Page Updated with Image Successfully', 
-            'alert-type' => 'success'
-        );
-
-        return redirect()->back()->with($notification);
-
-        } else{
-
-            About::findOrFail($about_id)->update([
+            $notification = [
+                'message' => 'About Page Updated with Image Successfully',
+                'alert-type' => 'success',
+            ];
+        } else {
+            $about->update([
                 'title' => $request->title,
                 'short_title' => $request->short_title,
                 'short_description' => $request->short_description,
                 'long_description' => $request->long_description,
+            ]);
 
-            ]); 
-            $notification = array(
-            'message' => 'About Page Updated without Image Successfully', 
-            'alert-type' => 'success'
-        );
+            $notification = [
+                'message' => 'About Page Updated without Image Successfully',
+                'alert-type' => 'success',
+            ];
+        }
 
         return redirect()->back()->with($notification);
+    }
 
-        } // end Else
-
-     } // End Method 
-
-
-     public function HomeAbout(){
-
+    public function HomeAbout()
+    {
         $aboutpage = About::find(1);
-        return view('frontend.about_page',compact('aboutpage'));
+        return view('frontend.about_page', compact('aboutpage'));
+    } // End Method
 
-     }// End Method 
-     public function AboutMultiImage(){
+    public function AboutMultiImage()
+    {
         return view('admin.about_page.multimage');
-     }// End Method 
+    } // End Method
 
+    public function StoreMultiImage(Request $request)
+    {
+        $image = $request->file('multi_image');
+        foreach ($image as $multi_image) {
+            $name_gen = hexdec(uniqid()) . '.' . $multi_image->getClientOriginalExtension();
+           // Image::make($multi_image)->resize(220, 220)->save(public_path('upload/multi/' . $name_gen));
+
+            $save_url = 'upload/multi/' . $name_gen;
+            MultiImage::insert([
+                'multi_image' => $save_url,
+                'created_at' => Carbon::now(),
+            ]);
+        }
+
+        $notification = [
+            'message' => 'Multi Image Inserted Successfully',
+            'alert-type' => 'success',
+        ];
+
+        return redirect()->back()->with($notification);
+    } // End Method
 }
- 

@@ -16,7 +16,11 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->singleton('ImageManager', function () {
             return new ImageManager(array('driver' => 'gd')); // or 'imagick'
+            
         });
+       // $this->app->singleton(Intervention\Image\ImageServiceProvider::class, function ($app) {
+          //  return new Intervention\Image\ImageServiceProvider($app);
+      //  });
     }
 
     /**
