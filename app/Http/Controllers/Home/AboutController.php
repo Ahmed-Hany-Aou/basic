@@ -80,6 +80,8 @@ class AboutController extends Controller
 
     public function AboutMultiImage()
     {
+        
+        $allMultiImage = MultiImage::all();
         return view('admin.about_page.multimage');
     } // End Method
 
