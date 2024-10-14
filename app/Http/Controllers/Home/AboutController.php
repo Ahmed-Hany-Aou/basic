@@ -30,6 +30,7 @@ class AboutController extends Controller
             'long_description' => 'required|string',
             'about_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+        
 
         if ($request->file('about_image')) {
             $file = $request->file('about_image');
@@ -80,6 +81,8 @@ class AboutController extends Controller
 
     public function AboutMultiImage()
     {
+        
+        $allMultiImage = MultiImage::all();
         return view('admin.about_page.multimage');
     } // End Method
 
