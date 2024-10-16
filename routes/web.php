@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Home\HomeSliderController;
 use App\Http\Controllers\Home\AboutController;
 use App\Http\Controllers\Home\PortfolioController;
+use App\Http\Controllers\Home\BlogCategoryController;
 
 
 
@@ -71,6 +72,12 @@ Route::controller(AboutController::class)->group(function () {
     
 });
 
+ // Blog Category All Routes 
+ Route::controller(BlogCategoryController::class)->group(function () {
+    Route::get('/all/blog/category', 'AllBlogCategory')->name('all.blog.category');
+     
+     
+});
 
  
 //all.portfolio'-- admin.protfolio.protfolio_edit
