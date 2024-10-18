@@ -66,7 +66,7 @@ class BlogController extends Controller
         if ($request->file('blog_image')) {
             $image = $request->file('blog_image');
             $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();  // 3434343443.jpg
-             Image::make($image)->resize(430,327)->save('upload/blog/'.$name_gen);
+            $image->move(public_path('upload/blog'), $name_gen);
             $save_url = 'upload/blog/'.$name_gen;
             Blog::findOrFail($blog_id)->update([
                 'blog_category_id' => $request->blog_category_id,
