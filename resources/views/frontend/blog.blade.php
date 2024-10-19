@@ -2,12 +2,11 @@
 @section('main')
 
 @section('title')
-Blog | Hany's Work
+Blog | EasyLearning Website
 @endsection
 
+<main> 
 
-
-<main>
             <!-- breadcrumb-area -->
             <section class="breadcrumb__wrap">
                 <div class="container custom-container">
@@ -37,11 +36,14 @@ Blog | Hany's Work
                 </div>
             </section>
             <!-- breadcrumb-area-end -->
+
+
             <!-- blog-area -->
             <section class="standard__blog">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-8">
+
                         @foreach($allblogs as $item)
 <div class="standard__blog__post">
     <div class="standard__blog__thumb">
@@ -63,15 +65,11 @@ Blog | Hany's Work
     </div>
 </div>
                             @endforeach
-                            <div class="pagination-wrap">
-                                <nav aria-label="Page navigation example">
-                                    <ul class="pagination">
-                                        <li class="page-item"><a class="page-link" href="#"><i class="far fa-long-arrow-left"></i></a></li>
-                                        
-                                        
-                                    </ul>
-                                </nav>
-                            </div>
+
+
+        <div class="pagination-wrap">
+            {{ $allblogs->links('vendor.pagination.custom') }}
+        </div>
                         </div>
                         <div class="col-lg-4">
                             <aside class="blog__sidebar">
@@ -81,9 +79,12 @@ Blog | Hany's Work
                                         <button type="submit"><i class="fal fa-search"></i></button>
                                     </form>
                                 </div>
+
+
         <div class="widget">
             <h4 class="widget-title">Recent Blog</h4>
             <ul class="rc__post">
+
                @foreach($allblogs as $all )
                 <li class="rc__post__item">
                     <div class="rc__post__thumb">
@@ -99,6 +100,7 @@ Blog | Hany's Work
                                         
                                     </ul>
                                 </div>
+
                                <div class="widget">
             <h4 class="widget-title">Categories</h4>
             <ul class="sidebar__cat">
@@ -107,6 +109,8 @@ Blog | Hany's Work
                 @endforeach
             </ul>
         </div>
+
+
                                 <div class="widget">
                                     <h4 class="widget-title">Recent Comment</h4>
                                     <ul class="sidebar__comment">
@@ -150,6 +154,8 @@ Blog | Hany's Work
                 </div>
             </section>
             <!-- blog-area-end -->
+
+
             <!-- contact-area -->
             <section class="homeContact homeContact__style__two">
                 <div class="container">
@@ -181,5 +187,10 @@ Blog | Hany's Work
                 </div>
             </section>
             <!-- contact-area-end -->
+
         </main>
+
+
+
+
 @endsection
