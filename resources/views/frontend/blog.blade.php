@@ -1,15 +1,13 @@
 @extends('frontend.main_master')
 @section('main')
-
 <main>
-
             <!-- breadcrumb-area -->
             <section class="breadcrumb__wrap">
                 <div class="container custom-container">
                     <div class="row justify-content-center">
                         <div class="col-xl-6 col-lg-8 col-md-10">
                             <div class="breadcrumb__wrap__content">
-               <h2 class="title"> {{ $categoryname->blog_category }} </h2>
+               <h2 class="title"> All Blogs </h2>
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -32,15 +30,12 @@
                 </div>
             </section>
             <!-- breadcrumb-area-end -->
-
-
             <!-- blog-area -->
             <section class="standard__blog">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-8">
-
-                        @foreach($blogpost as $item)
+                        @foreach($allblogs as $item)
 <div class="standard__blog__post">
     <div class="standard__blog__thumb">
         <a href="blog-details.html"><img src="{{ asset($item->blog_image) }}" alt=""></a>
@@ -61,8 +56,6 @@
     </div>
 </div>
                             @endforeach
-
-
                             <div class="pagination-wrap">
                                 <nav aria-label="Page navigation example">
                                     <ul class="pagination">
@@ -81,12 +74,9 @@
                                         <button type="submit"><i class="fal fa-search"></i></button>
                                     </form>
                                 </div>
-
-
         <div class="widget">
             <h4 class="widget-title">Recent Blog</h4>
             <ul class="rc__post">
-
                @foreach($allblogs as $all )
                 <li class="rc__post__item">
                     <div class="rc__post__thumb">
@@ -102,7 +92,6 @@
                                         
                                     </ul>
                                 </div>
-
                                <div class="widget">
             <h4 class="widget-title">Categories</h4>
             <ul class="sidebar__cat">
@@ -111,8 +100,6 @@
                 @endforeach
             </ul>
         </div>
-
-
                                 <div class="widget">
                                     <h4 class="widget-title">Recent Comment</h4>
                                     <ul class="sidebar__comment">
@@ -156,8 +143,6 @@
                 </div>
             </section>
             <!-- blog-area-end -->
-
-
             <!-- contact-area -->
             <section class="homeContact homeContact__style__two">
                 <div class="container">
@@ -189,10 +174,5 @@
                 </div>
             </section>
             <!-- contact-area-end -->
-
         </main>
-
-
-
-
 @endsection
