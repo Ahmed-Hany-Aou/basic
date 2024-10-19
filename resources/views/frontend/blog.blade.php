@@ -1,5 +1,12 @@
 @extends('frontend.main_master')
 @section('main')
+
+@section('title')
+Blog| Hany's Work
+@endsection
+
+
+
 <main>
             <!-- breadcrumb-area -->
             <section class="breadcrumb__wrap">

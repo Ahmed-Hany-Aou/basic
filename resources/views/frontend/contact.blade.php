@@ -1,6 +1,11 @@
 @extends('frontend.main_master')
 @section('main')
 
+@section('title')
+Contact | Hany's Work
+@endsection
+
+
  <main>
 
             <!-- breadcrumb-area -->
