@@ -1,5 +1,11 @@
 @extends('frontend.main_master')
 @section('main')
+
+
+@section('title')
+PortFolio | Hany's Work
+@endsection
+
   <main>
             <!-- breadcrumb-area -->
             <section class="breadcrumb__wrap">
