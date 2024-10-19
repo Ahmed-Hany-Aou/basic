@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
+use App\Models\Contact;
+use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -10,6 +12,23 @@ class ContactController extends Controller
    
     public function Contact(){
         return view('frontend.contact');
+    } // end mehtod 
+
+    public function StoreMessage(Request $request){
+
+        Contact::insert([
+            'name' => $request->name,
+            'email' => $request->email,
+            'subject' => $request->subject,
+            'phone' => $request->phone,
+            'message' => $request->message, 
+            'created_at' => Carbon::now(),
+        ]);
+         $notification = array(
+            'message' => 'Your Message Submited Successfully', 
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
     } // end mehtod 
 
 }
