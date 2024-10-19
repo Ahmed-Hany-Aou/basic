@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Home;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\BlogCategory;
+use App\Models\Blog;
 class BlogCategoryController extends Controller
 {
     public function AllBlogCategory(){
@@ -55,6 +56,33 @@ class BlogCategoryController extends Controller
             'alert-type' => 'success'
         );
         return redirect()->back()->with($notification);       
-    } // End Method
+    } // End Method.
+
+    public function BlogDetails($id) {
+        $blog = Blog::findOrFail($id); // Single blog instance, renamed to $blog
+        $allblogs = Blog::latest()->limit(5)->get(); // Collection of recent blogs
+        $categories = BlogCategory::orderBy('blog_category', 'ASC')->get(); // List of categories
+        $categoryname = BlogCategory::findOrFail($blog->blog_category_id); // Fetch related category
+    
+        return view('frontend.cat_blog_details', compact('blog', 'allblogs', 'categories', 'categoryname'));
+    }
+    public function CategoryBlog($id) {
+        $blogpost = Blog::where('blog_category_id', $id)->orderBy('id', 'DESC')->get();
+        $allblogs = Blog::latest()->limit(5)->get();
+        $categories = BlogCategory::orderBy('blog_category', 'ASC')->get();
+        $categoryname = BlogCategory::findOrFail($id);
+    
+        return view('frontend.cat_blog_details', compact('blogpost', 'allblogs', 'categories', 'categoryname'));
+    }
+    
+
+     public function HomeBlog(){
+
+        $categories = BlogCategory::orderBy('blog_category','ASC')->get();
+        $allblogs = Blog::latest()->get();
+        return view('frontend.blog',compact('allblogs','categories'));
+
+     } // End Method 
+
 }
  
