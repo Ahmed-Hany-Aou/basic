@@ -1,6 +1,9 @@
 @extends('frontend.main_master')
 @section('main')
+
+
   <main>
+
             <!-- breadcrumb-area -->
             <section class="breadcrumb__wrap">
                 <div class="container custom-container">
@@ -30,6 +33,8 @@
                 </div>
             </section>
             <!-- breadcrumb-area-end -->
+
+
             <!-- blog-details-area -->
             <section class="standard__blog blog__details">
 <div class="container">
@@ -201,9 +206,19 @@
                 <button type="submit"><i class="fal fa-search"></i></button>
             </form>
         </div>
+
+
+
+
+
+
+
+
+
         <div class="widget">
             <h4 class="widget-title">Recent Blog</h4>
             <ul class="rc__post">
+
             	@foreach($allblogs as $all )
                 <li class="rc__post__item">
                     <div class="rc__post__thumb">
@@ -216,6 +231,7 @@
                     </div>
                 </li>
                 @endforeach
+
                 
             </ul>
         </div>
@@ -270,6 +286,8 @@
 </div>
 </section>
 <!-- blog-details-area-end -->
+
+
 <!-- contact-area -->
 <section class="homeContact homeContact__style__two">
 <div class="container">
@@ -301,5 +319,12 @@
                 </div>
             </section>
             <!-- contact-area-end -->
+
         </main>
+
+
+
+
+
+
 @endsection
