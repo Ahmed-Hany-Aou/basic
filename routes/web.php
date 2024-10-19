@@ -11,14 +11,16 @@ use App\Http\Controllers\Home\BlogController;
 use App\Http\Controllers\Home\FooterController;
 use App\Http\Controllers\Home\ContactController;
 
-Route::get('/', function () {
-    return view('frontend.index');
-});
+//Route::get('/', function () {
+   // return view('frontend.index');
+//});
 
  
 Route::controller(DemoController::class)->group(function () {
     Route::get('/about', 'Index')->name('about.page')->middleware('check');
     Route::get('/contact', 'ContactMethod')->name('cotact.page');
+    Route::get('/', 'HomeMain')->name('home');
+
 });
 
 

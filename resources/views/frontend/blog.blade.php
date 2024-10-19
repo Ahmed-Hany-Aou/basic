@@ -2,7 +2,7 @@
 @section('main')
 
 @section('title')
-Blog| Hany's Work
+Blog | Hany's Work
 @endsection
 
 
