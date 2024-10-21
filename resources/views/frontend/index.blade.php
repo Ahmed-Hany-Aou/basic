@@ -14,7 +14,7 @@ Home | Hany's Work
     @include('frontend.home_all.home_about')
     <!-- about-area-end -->
 
-    <!-- services-area -->
+    <!-- services-area
     <section class="services">
     <div class="container">
     <div class="services__title__wrap">
@@ -144,7 +144,7 @@ Home | Hany's Work
     </div>
     </div>
     </section>
-    <!-- services-area-end -->
+     services-area-end   -->
 
     <!-- work-process-area -->
     <section class="work__process">
