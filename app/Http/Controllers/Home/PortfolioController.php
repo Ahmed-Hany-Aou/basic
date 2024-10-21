@@ -34,7 +34,21 @@ class PortfolioController extends Controller
         $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
 
         // Move the file to the public directory
-        $image->move(public_path('upload/portfolio'), $name_gen);
+       // $image->move(public_path('upload/portfolio'), $name_gen);
+
+
+
+        // Resize and save the image
+         // Resize, orientate, and save the image
+         Image::make($image)
+         ->orientate()  // Fix orientation
+         ->resize(648, 616)
+         ->save(public_path('upload/portfolio/' . $name_gen));
+
+     $save_url = 'upload/portfolio/' . $name_gen;
+
+
+
 
         $save_url = 'upload/portfolio/' . $name_gen;
 
@@ -78,8 +92,15 @@ class PortfolioController extends Controller
             $image = $request->file('portfolio_image');
             $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();  // 3434343443.jpg
 
-            $image->move(public_path('upload/portfolio'), $name_gen);
-            $save_url = 'upload/portfolio/'.$name_gen;
+           // $image->move(public_path('upload/portfolio'), $name_gen);
+           // $save_url = 'upload/portfolio/'.$name_gen;
+            // Resize, orientate, and save the image
+        Image::make($image)
+        ->orientate()  // Fix orientation
+        ->resize(648, 616)
+        ->save(public_path('upload/portfolio/' . $name_gen));
+
+    $save_url = 'upload/portfolio/' . $name_gen;
 
             Portfolio::findOrFail($portfolio_id)->update([
                 'portfolio_name' => $request->portfolio_name,
