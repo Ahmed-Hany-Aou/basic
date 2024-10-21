@@ -165,6 +165,8 @@ return [
     //    Intervention\Image\ImageServiceProvider::class,
     
        // Intervention\Image\ImageServiceProvider::class,
+       Intervention\Image\ImageServiceProvider::class,
+
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,
         Illuminate\Cache\CacheServiceProvider::class,
@@ -221,6 +223,8 @@ return [
 'aliases' => Facade::defaultAliases()->merge([
     //'Image' => Intervention\Image\Facades\Image::class,
   // 'Image' => Intervention\Image\Facades\Image::class,
+  'Image' => Intervention\Image\Facades\Image::class,
+
   
 
 ])->toArray(),
