@@ -153,7 +153,7 @@ public function DeleteBlog($id){
 
         $categories = BlogCategory::orderBy('blog_category','ASC')->get();
        // $allblogs = Blog::latest()->get();
-        $allblogs = Blog::latest()->paginate(5); // Changed to paginat
+        $allblogs = Blog::latest()->paginate(2); // Changed to paginat
         return view('frontend.blog',compact('allblogs','categories'));
         
      } // End Method 

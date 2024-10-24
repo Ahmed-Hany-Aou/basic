@@ -52,8 +52,9 @@ Blog | EasyLearning Website
     </div>
     <div class="standard__blog__content">
         <div class="blog__post__avatar">
-            <div class="thumb"><img src="{{ asset($item->blog_image) }}" alt=""></div>
-            <span class="post__by">By : <a href="#">Halina Spond</a></span>
+           <!-- <div class="thumb"><img src="{{ asset($item->blog_image) }}" alt=""></div> -->
+           <div class="thumb"><img src="{{asset('backend/assets/images/avatar/me.jpg')}}" alt=""></div> 
+            <span class="post__by">By : <a href="#">Ahmed Hany</a></span>
         </div>
         <h2 class="title"><a href="{{ route('blog.details',$item->id) }}">{{$item->blog_title}}</a></h2>
         <p>{!! Str::limit($item->blog_description, 200) !!}  </p>
