@@ -20,7 +20,8 @@ class FooterController extends Controller
                 'adress' => $request->adress,
                 'email' => $request->email,
                 'facebook' => $request->facebook,
-                'twitter' => $request->twitter,
+                'linkedin' => $request->linkedin,
+                'youtube' => $request ->youtube,
                 'copyright' => $request->copyright,
             ]); 
             $notification = array(
