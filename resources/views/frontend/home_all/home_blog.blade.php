@@ -1,6 +1,8 @@
 @php
 
-$blogs = App\Models\Blog::latest()->limit(3)->get();
+//$blogs = App\Models\Blog::latest()->limit(3)->get();
+$blogs = App\Models\Blog::with('category')->latest()->limit(3)->get();
+
 
 @endphp
 
@@ -15,7 +17,8 @@ $blogs = App\Models\Blog::latest()->limit(3)->get();
            <div class="blog__post__thumb">
                <a href="blog-details.html"><img src="{{ asset($item->blog_image) }} " alt=""></a>
                <div class="blog__post__tags">
-     <a href="blog.html">{{ $item['category']['blog_category'] }}</a>
+
+
                </div>
            </div>
            <div class="blog__post__content">

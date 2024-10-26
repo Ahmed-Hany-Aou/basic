@@ -11,11 +11,21 @@ use Illuminate\Support\Carbon;
 
 class BlogController extends Controller
 {
-    public function AllBlog(){
+   // public function AllBlog(){
 
-        $blogs = Blog::latest()->get();
-        return view('admin.blogs.blogs_all',compact('blogs'));
-    } // End Method
+      //  $blogs = Blog::latest()->get();
+        //return view('admin.blogs.blogs_all',compact('blogs'));
+   // } // End Method
+
+    public function AllBlog()
+{
+    $blogs = Blog::with('category')->latest()->get(); // Eager load category relation
+    return view('admin.blogs.blogs_all', compact('blogs'));
+}
+
+
+
+
 
 
     public function AddBlog(){
