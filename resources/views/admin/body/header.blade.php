@@ -34,6 +34,11 @@
 </div>
 </form>
 
+<!-- HTML !-->
+
+
+
+
 
 </div>
 
@@ -45,6 +50,7 @@
 <button type="button" class="btn header-item noti-icon waves-effect" data-toggle="fullscreen">
 <i class="ri-fullscreen-line"></i>
 </button>
+<a href="{{ route('home') }}" class="btn btn-outline-primary btn-sm">Home</a>
 </div>
 
 @php
