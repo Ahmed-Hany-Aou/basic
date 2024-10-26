@@ -34,6 +34,7 @@ $route = Route::current()->getName();
         
     </li>
     <li class="{{ ($route == 'contact.me') ? 'active' : '' }}"><a href="{{ route('contact.me') }}">contact me</a></li>
+    <li class="{{ ($route == 'login') ? 'active' : '' }}"><a href="{{ route('dashboard') }}">Login</a></li>
     </ul>
     </div>
 
