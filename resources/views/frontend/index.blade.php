@@ -273,6 +273,7 @@ Home | Hany's Work
     <div class="container">
     <div class="row align-items-center justify-content-between">
     <div class="col-lg-6 order-0 order-lg-2">
+      <!--  
     <ul class="testimonial__avatar__img">
     <li><img src="{{ asset('frontend/assets/img/images/testi_img01.png') }}" alt=""></li>
     <li><img src="{{ asset('frontend/assets/img/images/testi_img02.png') }}" alt=""></li>
@@ -281,7 +282,7 @@ Home | Hany's Work
     <li><img src="{{ asset('frontend/assets/img/images/testi_img05.png') }}" alt=""></li>
     <li><img src="{{ asset('frontend/assets/img/images/testi_img06.png') }}" alt=""></li>
     <li><img src="{{ asset('frontend/assets/img/images/testi_img07.png') }}" alt=""></li>
-    </ul>
+    </ul>  -->
     </div>
     <div class="col-xl-5 col-lg-6">
     <div class="testimonial__wrap">
@@ -337,12 +338,13 @@ Home | Hany's Work
                                 </div>
                                 <div class="homeContact__content">
                                     <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
-                                    <h2 class="mail"><a href="mailto:Info@webmail.com">Info@webmail.com</a></h2>
+                                    <h2 class="mail"><a href="mailto:ahmed.hany.boshra@gmail.com">ahmed.hany.boshra@gmail.com</a></h2>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="homeContact__form">
-                                    <form action="#">
+                                   <form method="post" action="{{ route('store.message') }}">
+                                    @csrf
                                         <input type="text" placeholder="Enter name*">
                                         <input type="email" placeholder="Enter mail*">
                                         <input type="number" placeholder="Enter number*">
@@ -355,6 +357,6 @@ Home | Hany's Work
                     </div>
                 </div>
             </section>
-            <!-- contact-area-end -->
+         
 
 @endsection
