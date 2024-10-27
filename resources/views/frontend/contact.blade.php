@@ -59,7 +59,7 @@ Contact | Hany's Work
 
         <div class="row">
             <div class="col-md-6">
-                <input  name="name" type="text" placeholder="Enter your name here dddddxxx*">
+                <input  name="name" type="text" placeholder="Enter your name here *">
             </div>
             <div class="col-md-6">
                 <input name="email" type="email" placeholder="Enter your mail*">
@@ -68,7 +68,7 @@ Contact | Hany's Work
                 <input  name="subject" type="text" placeholder="Enter your subject*">
             </div>
             <div class="col-md-6">
-                <input  name="phone" type="text" placeholder="Your Phone*">
+                <input  name="phone" type="number" placeholder="Your Phone*">
             </div>
         </div>
         <textarea name="message" id="message" placeholder="Enter your massage*"></textarea>
