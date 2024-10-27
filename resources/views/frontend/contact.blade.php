@@ -59,7 +59,7 @@ Contact | Hany's Work
 
         <div class="row">
             <div class="col-md-6">
-                <input  name="name" type="text" placeholder="Enter your name here*">
+                <input  name="name" type="text" placeholder="Enter your name here dddddxxx*">
             </div>
             <div class="col-md-6">
                 <input name="email" type="email" placeholder="Enter your mail*">
