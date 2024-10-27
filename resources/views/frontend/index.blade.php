@@ -337,25 +337,23 @@ Home | Hany's Work
                                     <h2 class="title">Any questions? Feel free <br> to contact</h2>
                                 </div>
                                 <div class="homeContact__content">
-                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
+                                    <p>"If you have any inquiries, suggestions, or need further information, please don't hesitate to reach out. We are here to assist you with anything you need."</p>
                                     <h2 class="mail"><a href="mailto:ahmed.hany.boshra@gmail.com">ahmed.hany.boshra@gmail.com</a></h2>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="homeContact__form">
-                                   <form method="post" action="{{ route('store.message') }}">
-                                    @csrf
-                                        <input type="text" placeholder="Enter name*">
-                                        <input type="email" placeholder="Enter mail*">
-                                        <input type="number" placeholder="Enter number*">
-                                        <textarea name="message" placeholder="Enter Massage*"></textarea>
-                                        <button type="submit">Send Message</button>
+                                    <form method="post" action="{{ route('store.message') }}">
+                                        @csrf
+                                        <input  name="name" type="text" placeholder="Enter your name here *">
+                                        <input name="email" type="email" placeholder="Enter your mail *">
+                                        <input  name="subject" type="text" placeholder="Enter your subject *">
+                                        <input  name="phone" type="text" placeholder="Your Phone*">
+                                        <textarea name="message" id="message" placeholder="Enter your massage *"></textarea>
+                                        <button type="submit" class="btn">send massage</button>
                                     </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
+                
             </section>
          
 
