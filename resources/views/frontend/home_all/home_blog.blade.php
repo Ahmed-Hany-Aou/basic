@@ -15,7 +15,7 @@ $blogs = App\Models\Blog::with('category')->latest()->limit(3)->get();
    <div class="col-lg-4 col-md-6 col-sm-9">
        <div class="blog__post__item">
            <div class="blog__post__thumb">
-               <a href="blog-details.html"><img src="{{ asset($item->blog_image) }} " alt=""></a>
+            <a href="{{ route('blog.details', $item->id) }}"><img src="{{ asset($item->blog_image) }}" alt=""></a>
                <div class="blog__post__tags">
 
 
@@ -33,7 +33,7 @@ $blogs = App\Models\Blog::with('category')->latest()->limit(3)->get();
                      
                    </div>
                    <div class="blog__button text-center">
-                       <a href="blog.html" class="btn">more blog</a>
+                       <a href={{route('home.blog')}} class="btn">more blog</a>
                    </div>
                </div>
            </section>
