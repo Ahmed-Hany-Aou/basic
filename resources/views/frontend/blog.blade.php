@@ -1,8 +1,12 @@
+@php 
+$blogs = App\Models\Blog::with('category')->latest()->limit(3)->get();
+@endphp
+
 @extends('frontend.main_master')
 @section('main')
 
 @section('title')
-Blog | EasyLearning Website
+Blog | Hany's Work
 @endsection
 
 <main> 
@@ -38,39 +42,55 @@ Blog | EasyLearning Website
             <!-- breadcrumb-area-end -->
 
 
-            <!-- blog-area -->
-            <section class="standard__blog">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-8">
+      <!-- blog-area -->
+<section class="standard__blog">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                @foreach($allblogs as $item)
+                    <div class="standard__blog__post">
+                        <div class="standard__blog__thumb">
+                            <a href="{{ route('blog.details', $item->id) }}">
+                                <img src="{{ asset($item->blog_image) }}" alt="{{ $item->blog_title }}">
+                            </a>
+                            <a href="{{ route('blog.details', $item->id) }}" class="blog__link">
+                                <i class="far fa-long-arrow-right"></i>
+                            </a>
+                        </div>
+                        <div class="standard__blog__content">
+                            <div class="blog__post__avatar">
+                                <div class="thumb">
+                                    <img src="{{ asset('backend/assets/images/avatar/me.jpg') }}" alt="Author Avatar">
+                                </div>
+                                <span class="post__by">By : <a href="#">Ahmed Hany</a></span>
+                            </div>
+                            <h2 class="title">
+                                <a href="{{ route('blog.details', $item->id) }}">{{ $item->blog_title }}</a>
+                            </h2>
+                            <p>{!! Str::limit($item->blog_description, 150) !!}</p>
+                            <ul class="blog__post__meta">
+                                <li><i class="fal fa-calendar-alt"></i> 
+                                    {{ Carbon\Carbon::parse($item->created_at)->format('d F Y') }}
+                                </li>
+                                <li><i class="fal fa-comments-alt"></i> <a href="#">Comment (0)</a></li>
+                                <li class="post-share"><a href="#"><i class="fal fa-share-all"></i> (18)</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                @endforeach
 
-                        @foreach($allblogs as $item)
-<div class="standard__blog__post">
-    <div class="standard__blog__thumb">
-        <a href="blog-details.html"><img src="{{ asset($item->blog_image) }}" alt=""></a>
-        <a href="blog-details.html" class="blog__link"><i class="far fa-long-arrow-right"></i></a>
-    </div>
-    <div class="standard__blog__content">
-        <div class="blog__post__avatar">
-           <!-- <div class="thumb"><img src="{{ asset($item->blog_image) }}" alt=""></div> -->
-           <div class="thumb"><img src="{{asset('backend/assets/images/avatar/me.jpg')}}" alt=""></div> 
-            <span class="post__by">By : <a href="#">Ahmed Hany</a></span>
+                <div class="pagination-wrap">
+                    {{ $allblogs->links('vendor.pagination.custom') }}
+                </div>
+            </div>
         </div>
-        <h2 class="title"><a href="{{ route('blog.details',$item->id) }}">{{$item->blog_title}}</a></h2>
-        <p>{!! Str::limit($item->blog_description, 200) !!}  </p>
-        <ul class="blog__post__meta">
-            <li><i class="fal fa-calendar-alt"></i> {{ Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</li>
-            
-            
-        </ul>
     </div>
-</div>
-                            @endforeach
+</section>
+<!-- blog-area-end -->
 
 
-        <div class="pagination-wrap">
-            {{ $allblogs->links('vendor.pagination.custom') }}
-        </div>
+
+        
                         </div>
                         <div class="col-lg-4">
                             <aside class="blog__sidebar">
