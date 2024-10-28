@@ -478,13 +478,13 @@ About | Hany's Work
     <div class="blog__post__content">
         <span class="date">13 january 2021</span>
         <h3 class="title"><a href="blog-details.html">How to increase your productivity at work - 2021</a></h3>
-        <a href="blog-details.html" class="read__more">Read mORe</a>
+        <a href="blog-details.html" class="read__more">Read mOReeeeee</a>
     </div>
 </div>
 </div>
 </div>
 <div class="blog__button text-center">
-<a href="blog.html" class="btn">more blog</a>
+<a href="{{route('home.blog')}}" class="btn">more blog</a>
 </div>
 </div>
 </section>
