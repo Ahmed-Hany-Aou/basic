@@ -1,3 +1,8 @@
+@php
+
+$allfooter = App\Models\Footer::find(1);
+
+@endphp
 @extends('frontend.main_master')
 @section('main')
  <main>
@@ -47,8 +52,8 @@
                         </div>
                         <div class="col-lg-4">
                             <aside class="services__sidebar">
-                                <div class="widget">
-                                    <h5 class="title">Get in Touch</h5>
+                                <div class="widget" class="container mb-5">
+                                    <h5 class="title">Get in Touch </h5>
                                     <form action="#" class="sidebar__contact">
                                         <input type="text" placeholder="Enter name*">
                                         <input type="email" placeholder="Enter your mail*">
@@ -56,7 +61,8 @@
                                         <button type="submit" class="btn">send massage</button>
                                     </form>
                                 </div>
-                                <div class="widget">
+                                <div class="container mb-5">
+                                <div class="widget" >
                                     <h5 class="title">Project Information</h5>
                                     <ul class="sidebar__contact__info">
                                         <li><span>Date :</span> January, 2021</li>
@@ -72,18 +78,16 @@
                                 <div class="widget">
                                     <h5 class="title">Contact Information</h5>
                                     <ul class="sidebar__contact__info">
-                                        <li><span>Address :</span> 8638 Amarica Stranfod, <br> Mailbon Star</li>
-                                        <li><span>Mail :</span> yourmail@gmail.com</li>
-                                        <li><span>Phone :</span> +7464 0187 3535 645</li>
-                                        <li><span>Fax id :</span> +9 659459 49594</li>
+                                        <li><span>Address :</span> {{$allfooter->adress}} 
+                                        <li> <span>Email : </span> <a href="mailto:{{ $allfooter->email }}" class="mail">{{ $allfooter->email }}</a></li>
+                                        <li><span>Phone :</span> {{ $allfooter->number }}</li>
                                     </ul>
                                     <ul class="sidebar__contact__social">
-                                        <li><a href="#"><i class="fab fa-dribbble"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-behance"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                                        <li><a href="{{ $allfooter->facebook }}"><i class="fab fa-facebook-f"></i></a></li>
+                                     <li><a href="{{ $allfooter->linkedin }}"><i class="fab fa-linkedin-in"></i></a></li>
+                                    <li><a href="{{ $allfooter->youtube }}"><i class="fab fa-youtube"></i></a></li>
+                                      
+                                        
                                     </ul>
                                 </div>
                             </aside>
@@ -93,35 +97,7 @@
             </section>
             <!-- portfolio-details-area-end -->
             <!-- contact-area -->
-            <section class="homeContact homeContact__style__two">
-                <div class="container">
-                    <div class="homeContact__wrap">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="section__title">
-                                    <span class="sub-title">07 - Say hello</span>
-                                    <h2 class="title">Any questions? Feel free <br> to contact</h2>
-                                </div>
-                                <div class="homeContact__content">
-                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
-                                    <h2 class="mail"><a href="mailto:Info@webmail.com">Info@webmail.com</a></h2>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="homeContact__form">
-                                    <form action="#">
-                                        <input type="text" placeholder="Enter name*">
-                                        <input type="email" placeholder="Enter mail*">
-                                        <input type="number" placeholder="Enter number*">
-                                        <textarea name="message" placeholder="Enter Massage*"></textarea>
-                                        <button type="submit">Send Message</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            @include('frontend.partials.contact') 
             <!-- contact-area-end -->
         </main>
 @endsection
