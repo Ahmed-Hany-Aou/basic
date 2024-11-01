@@ -1,6 +1,6 @@
 <!-- contact-area -->
 <section class="homeContact py-5">
-    <div class="container">
+    <div class="container mt-5">           <!--  it pushes the area above ----بتزوق اللي فوقيها-->
         <div class="homeContact__wrap">
             <div class="row align-items-center">
                 <div class="col-lg-6 mb-4 mb-lg-0">
